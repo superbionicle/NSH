@@ -1,0 +1,77 @@
+services:
+  plex:
+    image: plexinc/pms-docker:latest
+    container_name: plex
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - VERSION=docker
+      #- PLEX_CLAIM=claim-
+    volumes:
+      - <plex-dir>:/config
+      - <plex-dir>/movies:/movies
+    ports:
+      - 32400:32400
+      - 32469:32469
+    restart: unless-stopped
+
+  transmission:
+    image: lscr.io/linuxserver/transmission:latest
+    container_name: transmission
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - <plex-dir>/transmission:/config
+      - <plex-dir>/transmission/downloads/complete:/downloads/complete
+      - <plex-dir>/transmission/downloads/incomplete:/downloads/incomplete
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    restart: unless-stopped
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - <plex-dir>/prowlarr:/config
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - <plex-dir>/radarr:/config
+      - <plex-dir>/movies:/movies
+      - <plex-dir>/transmission/downloads:/downloads
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - <plex-dir>/sonarr:/config
+      - <plex-dir>/tv:/tv
+      - <plex-dir>/transmission/downloads:/downloads
+    ports:
+      - 8989:8989
+    restart: unless-stopped
