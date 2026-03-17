@@ -7,10 +7,11 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
       - VERSION=docker
-      #- PLEX_CLAIM=claim-
+      - PLEX_CLAIM=${PLEX_KEY}
     volumes:
-      - <plex-dir>:/config
-      - <plex-dir>/movies:/movies
+      - ${PLEX_DIR}:/config
+      - ${PLEX_DIR}/radarr/movies:/movies
+      - ${PLEX_DIR}/sonarr/tv:/tv
     ports:
       - 32400:32400
       - 32469:32469
@@ -24,9 +25,9 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - <plex-dir>/transmission:/config
-      - <plex-dir>/transmission/downloads/complete:/downloads/complete
-      - <plex-dir>/transmission/downloads/incomplete:/downloads/incomplete
+      - ${PLEX_DIR}/transmission:/config
+      - ${PLEX_DIR}/transmission/downloads/complete:/downloads/complete
+      - ${PLEX_DIR}/transmission/downloads/incomplete:/downloads/incomplete
     ports:
       - 9091:9091
       - 51413:51413
@@ -41,7 +42,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - <plex-dir>/prowlarr:/config
+      - ${PLEX_DIR}/prowlarr:/config
     ports:
       - 9696:9696
     restart: unless-stopped
@@ -54,9 +55,9 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - <plex-dir>/radarr:/config
-      - <plex-dir>/movies:/movies
-      - <plex-dir>/transmission/downloads:/downloads
+      - ${PLEX_DIR}/radarr:/config
+      - ${PLEX_DIR}/radarr/movies:/movies
+      - ${PLEX_DIR}/transmission/downloads:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -69,9 +70,9 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - <plex-dir>/sonarr:/config
-      - <plex-dir>/tv:/tv
-      - <plex-dir>/transmission/downloads:/downloads
+      - ${PLEX_DIR}/sonarr:/config
+      - ${PLEX_DIR}/sonarr/tv:/tv
+      - ${PLEX_DIR}/transmission/downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
