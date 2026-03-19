@@ -39,3 +39,11 @@ Temporary Items
 
 # .env file
 .env
+
+# Other files
+Library/
+jackett/
+sonarr/
+transmission/
+radarr/
+prowlarr/
