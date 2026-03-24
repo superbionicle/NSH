@@ -39,11 +39,9 @@ Temporary Items
 
 # .env file
 .env
-
-# Other files
-Library/
-jackett/
+jellyfin/
+plex/
+prowlarr/
+radarr/
 sonarr/
 transmission/
-radarr/
-prowlarr/

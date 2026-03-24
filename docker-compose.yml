@@ -1,21 +1,21 @@
 services:
-  plex:
-    image: plexinc/pms-docker:latest
-    container_name: plex
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: jellyfin
+    ports:
+      - 8096:8096/tcp
+      - 7359:7359/udp
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
       - VERSION=docker
-      - PLEX_CLAIM=${PLEX_KEY}
     volumes:
-      - ./plex:/config
-      - ./radarr/movies:/movies
-      - ./sonarr/tv:/tv
-    ports:
-      - 32400:32400
-      - 32469:32469
-    restart: unless-stopped
+      - ${SETTING_PATH}/jellyfin/config:/config
+      - ${SETTING_PATH}/jellyfin/cache:/cache
+      - ${CONTENT_PATH}/radarr/movies:/movies
+      - ${CONTENT_PATH}/sonarr/tv:/tv
+    restart: 'unless-stopped'
 
   transmission:
     image: lscr.io/linuxserver/transmission:latest
@@ -25,9 +25,11 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - ./transmission:/config
-      - ./transmission/downloads/complete:/downloads/complete
-      - ./transmission/downloads/incomplete:/downloads/incomplete
+      - ${SETTING_PATH}/transmission:/config
+      - ${CONTENT_PATH}/transmission/downloads/complete:/downloads/complete
+      - ${CONTENT_PATH}/downloads/complete/tv-sonarr:/downloads/complete/tv-sonarr
+      - ${CONTENT_PATH}/downloads/complete/radarr:/downloads/complete/radarr
+      - ${CONTENT_PATH}/transmission/downloads/incomplete:/downloads/incomplete
     ports:
       - 9091:9091
       - 51413:51413
@@ -42,7 +44,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - ./prowlarr:/config
+      - ${SETTING_PATH}/prowlarr:/config
     ports:
       - 9696:9696
     restart: unless-stopped
@@ -55,9 +57,9 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - ./radarr:/config
-      - ./radarr/movies:/movies
-      - ./transmission/downloads:/downloads
+      - ${SETTING_PATH}/radarr:/config
+      - ${CONTENT_PATH}/radarr/movies:/movies
+      - ${CONTENT_PATH}/transmission/downloads:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -70,9 +72,9 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - ./sonarr:/config
-      - ./sonarr/tv:/tv
-      - ./transmission/downloads:/downloads
+      - ${SETTING_PATH}/sonarr:/config
+      - ${CONTENT_PATH}/sonarr/tv:/tv
+      - ${CONTENT_PATH}/transmission/downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
