@@ -11,7 +11,7 @@ Liste des conteneurs :
 - [Sonarr](http://localhost:8989/)
 
 # Jellyfin
-Accédez à `http://localhost:8096` et créez le serveur ainsi qu'un compte utilisateur.
+Accédez à [http://localhost:8096](http://localhost:8096) et créez le serveur ainsi qu'un compte utilisateur.
 Configurez les médiathèques.
 Choisissez un type de contenu et choisissez le dossier de destination où Jellyfin devra regarder.
 Pour les films, choisissez `/movies` et pour les séries `/tv`.
@@ -22,8 +22,8 @@ Créez un compte Trakt sur [https://app.trakt.tv/](https://app.trakt.tv/).
 Ce compte vous permettra d'ajouter des films et séries à votre _Watchlist_, afin qu'ils soient téléchargés automatiquement plus tard.
 Une fois le compte créé, ajoutez un film et une série, déjà sortis de préférence, à votre Watchlist.
 
-
 # Prowlarr
+Accédez à [http://localhost:9696/](http://localhost:9696/)
 ## Lien avec Transmission
 Dans `Paramètres` puis `Clients de téléchargement`, ajouter Transmission comme client de téléchargement.
 Seul le paramètre `Hôte` est nécessaire à renseigner.
@@ -35,6 +35,8 @@ N'oubliez pas de tester si l'URL fonctionne correctement et n'est pas bloquée p
 
 # Radarr et Sonarr
 Les explications suivantes sont identiques pour Radarr et Sonarr, bien que certaines options diffèrent légèrement dans les paramètres.
+Pour accéder à Radarr, accéder à [http://localhost:7878/](http://localhost:7878/).
+Pour accéder à Sonarr, accéder à [http://localhost:8989/](http://localhost:8989/).
 
 ## Dossier racine
 Dans `Paramètres` puis `Gestion des médias`, choisissez `Ajouter un dossier racine`.
@@ -46,7 +48,7 @@ Seuls les champs `Hôtes` et `Clef API` sont à renseigner.
 La clef API est à générer sur [le serveur Jellyfin](http://localhost:8096/web/#/dashboard/keys).
 
 ## Lien avec Trakt
-Dans `Paramètres` puis `Connexions`, choisissez `Trakt User` pour lier votre compte Trakt.
+Dans `Paramètres` puis `Listes`, choisissez `Trakt User` pour lier votre compte Trakt.
 Cochez `Activer`, choisissez le dossier racine précédemment renseigné, renseigner votre utilisateur et utilisez `Start OAuth` pour établir le lien avec Trakt.
 
 ## Lien avec Transmission
