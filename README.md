@@ -22,6 +22,11 @@ Créez un compte Trakt sur [https://app.trakt.tv/](https://app.trakt.tv/).\
 Ce compte vous permettra d'ajouter des films et séries à votre _Watchlist_, afin qu'ils soient téléchargés automatiquement plus tard.\
 Une fois le compte créé, ajoutez un film et une série, déjà sortis de préférence, à votre Watchlist.
 
+# Transmission
+Accédez à [http://localhost:9091](http://localhost:9091).\
+Dans les paramètres sous la section `Seeding`, cochez les deux cases et renseignez la valeur `0` si vous ne souhaitez pas faire de l'upload de torrent une fois les votres téléchargés.\
+Attention : ce n'est pas recommandé pour les indexeurs privés qui requiert en général d'avoir un ratio d'upload/download en général.
+
 # Prowlarr
 Accédez à [http://localhost:9696/](http://localhost:9696/)
 ## Lien avec Transmission
@@ -40,7 +45,8 @@ Pour accéder à Sonarr, accéder à [http://localhost:8989/](http://localhost:8
 
 ## Dossier racine
 Dans `Paramètres` puis `Gestion des médias`, choisissez `Ajouter un dossier racine`.\
-Pour Radarr, on renseignera `/movies` et `/tv` pour Sonarr.
+Pour Radarr, on renseignera `/movies` et `/tv` pour Sonarr.\
+Activez les paramètres avancés et cocher la case `Utiliser les liens durs au lieu de copier`.
 
 ## Lien avec Jellyfin
 Dans `Paramètres` puis `Connexions`, choisissez `Emby / Jellyfin` pour ajouter Jellyfin.\

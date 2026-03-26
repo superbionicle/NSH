@@ -13,8 +13,8 @@ services:
     volumes:
       - ${SETTING_PATH}/jellyfin/config:/config
       - ${SETTING_PATH}/jellyfin/cache:/cache
-      - ${CONTENT_PATH}/radarr/movies:/movies
-      - ${CONTENT_PATH}/sonarr/tv:/tv
+      - ${CONTENT_PATH}/movies:/movies
+      - ${CONTENT_PATH}/tv:/tv
     restart: 'unless-stopped'
 
   transmission:
@@ -26,10 +26,10 @@ services:
       - TZ=Etc/UTC
     volumes:
       - ${SETTING_PATH}/transmission:/config
-      - ${CONTENT_PATH}/transmission/downloads/complete:/downloads/complete
+      - ${CONTENT_PATH}/downloads/complete:/downloads/complete
       - ${CONTENT_PATH}/downloads/complete/tv-sonarr:/downloads/complete/tv-sonarr
       - ${CONTENT_PATH}/downloads/complete/radarr:/downloads/complete/radarr
-      - ${CONTENT_PATH}/transmission/downloads/incomplete:/downloads/incomplete
+      - ${CONTENT_PATH}/downloads/incomplete:/downloads/incomplete
     ports:
       - 9091:9091
       - 51413:51413
@@ -58,8 +58,8 @@ services:
       - TZ=Etc/UTC
     volumes:
       - ${SETTING_PATH}/radarr:/config
-      - ${CONTENT_PATH}/radarr/movies:/movies
-      - ${CONTENT_PATH}/transmission/downloads:/downloads
+      - ${CONTENT_PATH}/movies:/movies
+      - ${CONTENT_PATH}/downloads:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -73,8 +73,8 @@ services:
       - TZ=Etc/UTC
     volumes:
       - ${SETTING_PATH}/sonarr:/config
-      - ${CONTENT_PATH}/sonarr/tv:/tv
-      - ${CONTENT_PATH}/transmission/downloads:/downloads
+      - ${CONTENT_PATH}/tv:/tv
+      - ${CONTENT_PATH}/downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
