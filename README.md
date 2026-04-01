@@ -4,11 +4,11 @@
 Une fois le fichier `.env` configuré avec le contenu de celui de [`.env-example`](/.env-example), lancer la commande `docker compose up`. 
 
 Liste des conteneurs :
-- [Jellyfin](http://localhost:8096/)
-- [Transmission](http://localhost:9091)
-- [Prowlarr](http://localhost:9696/)
-- [Radarr](http://localhost:7878/)
-- [Sonarr](http://localhost:8989/)
+- Jellyfin : http://localhost:8096/
+- Transmission : http://localhost:9091
+- Prowlarr : http://localhost:9696/
+- Radarr : http://localhost:7878/
+- Sonarr : http://localhost:8989/
 
 # Jellyfin
 Accédez à [http://localhost:8096](http://localhost:8096) et créez le serveur ainsi qu'un compte utilisateur.\
